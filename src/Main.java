@@ -10,8 +10,14 @@ public class Main {
 
         outputWelcomeMsg();
 
-        // Outputs a list of absences for 10 students with a max num of 15 absences
-        outputList(generateListOfAbsences(10, 15));
+        // Generates a list of absences for 10 students with a max num of 15 absences
+        ArrayList<Integer> listOfAbsences = generateListOfAbsences(10, 15);
+
+        // Outputs the list of absences
+        outputList(listOfAbsences);
+
+        // counts the number of students with 0 absences
+        System.out.println("Number of Students with Perfect Attendance: " + howManyPerfectAttendance(listOfAbsences));
     }
 
     public static void outputWelcomeMsg() {
@@ -34,7 +40,17 @@ public class Main {
 
     public static void outputList(ArrayList<Integer> list) {
         for (int i = 0; i < list.size(); i++) {
-            System.out.println("Student " + i + ": " + list.get(i));
+            System.out.println("Student " + (i + 1) + ": " + list.get(i));
         }
+    }
+
+    public static int howManyPerfectAttendance(ArrayList<Integer> listOfAbsences) {
+        int numOfPerfectAttendance = 0;
+        for (int numOfAbsences : listOfAbsences) {
+            if (numOfAbsences == 0) {
+                numOfPerfectAttendance++;
+            }
+        }
+        return numOfPerfectAttendance;
     }
 }
