@@ -17,7 +17,12 @@ public class Main {
         outputList(listOfAbsences);
 
         // counts the number of students with 0 absences
-        System.out.println("Number of Students with Perfect Attendance: " + howManyPerfectAttendance(listOfAbsences));
+        int numOfAbsences = howManyPerfectAttendance(listOfAbsences);
+        System.out.println("Number of Students with Perfect Attendance: " + numOfAbsences);
+
+        // Finds the average amount of absences and outputs it
+        int averageOfAbsences = absenceAverage(listOfAbsences);
+        System.out.println("Average Number of Absences: " + averageOfAbsences);
     }
 
     public static void outputWelcomeMsg() {
@@ -52,5 +57,13 @@ public class Main {
             }
         }
         return numOfPerfectAttendance;
+    }
+
+    public static int absenceAverage(ArrayList<Integer> listOfAbsences) {
+        int sum = 0;
+        for (int num : listOfAbsences) {
+            sum += num;
+        }
+        return sum / listOfAbsences.size();
     }
 }
