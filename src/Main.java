@@ -41,9 +41,11 @@ public class Main {
         System.out.println("\nList of Absences with 3 added to Absences Greater Than 3: ");
         outputList(modifiedListOfAbsences);
 
+        /*
         // Sorts the list of absences using a library function
         Collections.sort(listOfAbsences);
         System.out.println("\nSorted Using Library Function: " + listOfAbsences);
+        */
 
         // Shuffles the list of absences using a library function
         Collections.shuffle(listOfAbsences);
@@ -57,6 +59,9 @@ public class Main {
         HashMap<Integer, Integer> absenceValueMap = howManyOfEachValue(listOfAbsences);
         System.out.println("\nOccurrence of each value: " + absenceValueMap);
 
+        // Sorts the list using a user-defined function
+        quickSort(listOfAbsences, 0, listOfAbsences.size() - 1);
+        System.out.println("\nSorted List Using User-Defined Function: " + listOfAbsences);
 
     }
 
@@ -161,5 +166,33 @@ public class Main {
         }
         return valueMap;
     }
+
+    public static void quickSort(ArrayList<Integer> listOfAbsences, int lowIndex, int highIndex) {
+        if (lowIndex < highIndex) {
+            int partition = partition(listOfAbsences, lowIndex, highIndex);
+            quickSort(listOfAbsences, lowIndex, partition - 1);
+            quickSort(listOfAbsences, lowIndex + 1, highIndex);
+        }
+    }
+
+    public static int partition(ArrayList<Integer> listOfAbsences, int lowIndex, int highIndex) {
+        int pivot = listOfAbsences.get(highIndex);
+        int index = lowIndex - 1;
+
+        for (int i = lowIndex; i < highIndex; i++) {
+            if (listOfAbsences.get(i) <= pivot) {
+                index++;
+                int temp = listOfAbsences.get(index);
+                listOfAbsences.set(index, listOfAbsences.get(i));
+                listOfAbsences.set(i, temp);
+            }
+        }
+        int temp = listOfAbsences.get(index + 1);
+        listOfAbsences.set(index + 1, listOfAbsences.get(highIndex));
+        listOfAbsences.set(highIndex, temp);
+        return index + 1;
+    }
+
+
 
 }
