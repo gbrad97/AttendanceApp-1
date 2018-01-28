@@ -23,6 +23,10 @@ public class Main {
         // Finds the average amount of absences and outputs it
         int averageOfAbsences = absenceAverage(listOfAbsences);
         System.out.println("Average Number of Absences: " + averageOfAbsences);
+
+        // Finds the students who have 5 absences
+        ArrayList<Integer> listOfStudentsWithXAbsences = whoHadXAbsences(listOfAbsences, 5);
+        System.out.println("Students with 5 Absences: " + listOfStudentsWithXAbsences);
     }
 
     public static void outputWelcomeMsg() {
@@ -65,5 +69,15 @@ public class Main {
             sum += num;
         }
         return sum / listOfAbsences.size();
+    }
+
+    public static ArrayList<Integer> whoHadXAbsences(ArrayList<Integer> listOfAbsences, int num) {
+        ArrayList<Integer> studentsWithXAbsences = new ArrayList<>();
+        for (int i = 0; i < listOfAbsences.size(); i++) {
+            if (listOfAbsences.get(i) == num) {
+                studentsWithXAbsences.add(i + 1);
+            }
+        }
+        return studentsWithXAbsences;
     }
 }
