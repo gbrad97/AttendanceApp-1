@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.HashMap;
 
 public class Main {
 
@@ -51,6 +52,10 @@ public class Main {
         // Counts the number of unique absence values
         int numOfUniqueValues = howManyUniqueValues(listOfAbsences);
         System.out.println("\nNumber of Unique Absence Values: " + numOfUniqueValues);
+
+        // Counts the amount of each absence value
+        HashMap<Integer, Integer> absenceValueMap = howManyOfEachValue(listOfAbsences);
+        System.out.println("\nOccurrence of each value: " + absenceValueMap);
 
 
     }
@@ -142,4 +147,19 @@ public class Main {
         }
         return absenceValueSet.size();
     }
+
+
+    public static HashMap<Integer,Integer> howManyOfEachValue(ArrayList<Integer> listOfAbsences) {
+        HashMap<Integer, Integer> valueMap = new HashMap<>();
+        for (int num : listOfAbsences) {
+            if (!valueMap.containsKey(num)) {
+                valueMap.put(num, 1);
+            }
+            else {
+                valueMap.put(num, valueMap.get(num) + 1);
+            }
+        }
+        return valueMap;
+    }
+
 }
