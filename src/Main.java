@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Main {
 
@@ -45,6 +47,10 @@ public class Main {
         // Shuffles the list of absences using a library function
         Collections.shuffle(listOfAbsences);
         System.out.println("\nShuffle Using a Library Function: " + listOfAbsences);
+
+        // Counts the number of unique absence values
+        int numOfUniqueValues = howManyUniqueValues(listOfAbsences);
+        System.out.println("\nNumber of Unique Absence Values: " + numOfUniqueValues);
 
 
     }
@@ -106,7 +112,7 @@ public class Main {
         }
         return studentsWithXAbsences;
     }
-    
+
 
     public static double averageOfNonFE(ArrayList<Integer> listOfAbsences, int num) {
         ArrayList<Integer> nonFEList = new ArrayList<>();
@@ -126,6 +132,14 @@ public class Main {
             }
         }
         return listOfAbsences;
+    }
 
+
+    public static int howManyUniqueValues(ArrayList<Integer> listOfAbsences) {
+        Set<Integer> absenceValueSet = new HashSet<>();
+        for (int num : listOfAbsences) {
+            absenceValueSet.add(num);
+        }
+        return absenceValueSet.size();
     }
 }
