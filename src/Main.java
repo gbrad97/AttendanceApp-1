@@ -21,12 +21,17 @@ public class Main {
         System.out.println("Number of Students with Perfect Attendance: " + numOfAbsences);
 
         // Finds the average amount of absences and outputs it
-        int averageOfAbsences = absenceAverage(listOfAbsences);
+        double averageOfAbsences = absenceAverage(listOfAbsences);
         System.out.println("Average Number of Absences: " + averageOfAbsences);
 
         // Finds the students who have 5 absences
         ArrayList<Integer> listOfStudentsWithXAbsences = whoHadXAbsences(listOfAbsences, 5);
         System.out.println("Students with 5 Absences: " + listOfStudentsWithXAbsences);
+
+        // Finds the average of non FE absences (absences less than 6)
+
+        double nonFEAverage = averageOfNonFE(listOfAbsences, 6);
+        System.out.println("Average of Non-FE Absences: " + nonFEAverage);
 
         // Adds 2 to absences greater than 3
         ArrayList<Integer> modifiedListOfAbsences = addXToYAbsences(listOfAbsences, 3, 2);
@@ -68,7 +73,7 @@ public class Main {
         return numOfPerfectAttendance;
     }
 
-    public static int absenceAverage(ArrayList<Integer> listOfAbsences) {
+    public static double absenceAverage(ArrayList<Integer> listOfAbsences) {
         int sum = 0;
         for (int num : listOfAbsences) {
             sum += num;
@@ -84,6 +89,16 @@ public class Main {
             }
         }
         return studentsWithXAbsences;
+    }
+
+    public static double averageOfNonFE(ArrayList<Integer> listOfAbsences, int num) {
+        ArrayList<Integer> nonFEList = new ArrayList<>();
+        for (int i = 0; i < listOfAbsences.size(); i++) {
+            if (listOfAbsences.get(i) < num) {
+                nonFEList.add(listOfAbsences.get(i));
+            }
+        }
+        return absenceAverage(nonFEList);
     }
 
     public static ArrayList<Integer> addXToYAbsences(ArrayList<Integer> listOfAbsences, int num, int numToAdd) {
