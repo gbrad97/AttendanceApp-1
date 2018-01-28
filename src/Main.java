@@ -45,11 +45,12 @@ public class Main {
         // Sorts the list of absences using a library function
         Collections.sort(listOfAbsences);
         System.out.println("\nSorted Using Library Function: " + listOfAbsences);
-        */
+
 
         // Shuffles the list of absences using a library function
         Collections.shuffle(listOfAbsences);
         System.out.println("\nShuffle Using a Library Function: " + listOfAbsences);
+        */
 
         // Counts the number of unique absence values
         int numOfUniqueValues = howManyUniqueValues(listOfAbsences);
@@ -62,6 +63,10 @@ public class Main {
         // Sorts the list using a user-defined function
         quickSort(listOfAbsences, 0, listOfAbsences.size() - 1);
         System.out.println("\nSorted List Using User-Defined Function: " + listOfAbsences);
+
+        // Shuffles the list using a user-defined function
+        shuffle(listOfAbsences);
+        System.out.println("\nShuffled List Using a User-Defined Function: " + listOfAbsences);
 
     }
 
@@ -182,15 +187,25 @@ public class Main {
         for (int i = lowIndex; i < highIndex; i++) {
             if (listOfAbsences.get(i) <= pivot) {
                 index++;
-                int temp = listOfAbsences.get(index);
-                listOfAbsences.set(index, listOfAbsences.get(i));
-                listOfAbsences.set(i, temp);
+                swap(listOfAbsences, index, i);
             }
         }
-        int temp = listOfAbsences.get(index + 1);
-        listOfAbsences.set(index + 1, listOfAbsences.get(highIndex));
-        listOfAbsences.set(highIndex, temp);
+        swap(listOfAbsences, index + 1, highIndex);
         return index + 1;
+    }
+
+    public static void swap(ArrayList<Integer> list, int index, int newIndex) {
+        int temp = list.get(index);
+        list.set(index, list.get(newIndex));
+        list.set(newIndex, temp);
+    }
+
+    public static void shuffle(ArrayList<Integer> listOfAbsences) {
+        Random rand = new Random();
+        for (int i = 0; i < listOfAbsences.size(); i++) {
+            int newIndex = i + rand.nextInt(listOfAbsences.size() - i);
+            swap(listOfAbsences, i, newIndex);
+        }
     }
 
 
