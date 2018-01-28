@@ -27,6 +27,11 @@ public class Main {
         // Finds the students who have 5 absences
         ArrayList<Integer> listOfStudentsWithXAbsences = whoHadXAbsences(listOfAbsences, 5);
         System.out.println("Students with 5 Absences: " + listOfStudentsWithXAbsences);
+
+        // Adds 2 to absences greater than 3
+        ArrayList<Integer> modifiedListOfAbsences = addXToYAbsences(listOfAbsences, 3, 2);
+        System.out.println("List of Absences with 3 added to Absences Greater Than 3: ");
+        outputList(modifiedListOfAbsences);
     }
 
     public static void outputWelcomeMsg() {
@@ -79,5 +84,15 @@ public class Main {
             }
         }
         return studentsWithXAbsences;
+    }
+
+    public static ArrayList<Integer> addXToYAbsences(ArrayList<Integer> listOfAbsences, int num, int numToAdd) {
+        for (int i = 0; i < listOfAbsences.size(); i++) {
+            if (listOfAbsences.get(i) > num) {
+                listOfAbsences.set(i, listOfAbsences.get(i) + numToAdd);
+            }
+        }
+        return listOfAbsences;
+
     }
 }
