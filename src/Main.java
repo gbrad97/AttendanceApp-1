@@ -42,7 +42,11 @@ public class Main {
         Collections.sort(listOfAbsences);
         System.out.println("\nSorted Using Library Function: " + listOfAbsences);
 
-        
+        // Shuffles the list of absences using a library function
+        Collections.shuffle(listOfAbsences);
+        System.out.println("\nShuffle Using a Library Function: " + listOfAbsences);
+
+
     }
 
 
@@ -102,10 +106,7 @@ public class Main {
         }
         return studentsWithXAbsences;
     }
-
-
-
-
+    
 
     public static double averageOfNonFE(ArrayList<Integer> listOfAbsences, int num) {
         ArrayList<Integer> nonFEList = new ArrayList<>();
